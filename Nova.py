@@ -41,7 +41,6 @@
 # associated with the software. Users are obliged to review and comply with the respective
 # copyright and licensing terms of these components.
 
-
 import argparse
 import json
 import logging

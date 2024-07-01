@@ -80,7 +80,6 @@ _G.packer_plugins = {
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
   catppuccin = {
-    config = { "\27LJ\2\nã\1\0\0\5\0\f\0\0166\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0005\4\5\0=\4\6\3=\3\a\2B\0\2\0016\0\b\0009\0\t\0009\0\n\0'\2\v\0B\0\2\1K\0\1\0\21catppuccin-mocha\16colorscheme\bcmd\bvim\17integrations\15native_lsp\1\0\1\fenabled\2\1\0\2\15native_lsp\0\15treesitter\2\1\0\2\17integrations\0\fflavour\nmocha\nsetup\15catppuccin\frequire\0" },
     loaded = true,
     path = "/home/damion/.local/share/nvim/site/pack/packer/start/catppuccin",
     url = "https://github.com/catppuccin/nvim"
@@ -178,10 +177,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: catppuccin
-time([[Config for catppuccin]], true)
-try_loadstring("\27LJ\2\nã\1\0\0\5\0\f\0\0166\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0005\4\5\0=\4\6\3=\3\a\2B\0\2\0016\0\b\0009\0\t\0009\0\n\0'\2\v\0B\0\2\1K\0\1\0\21catppuccin-mocha\16colorscheme\bcmd\bvim\17integrations\15native_lsp\1\0\1\fenabled\2\1\0\2\15native_lsp\0\15treesitter\2\1\0\2\17integrations\0\fflavour\nmocha\nsetup\15catppuccin\frequire\0", "config", "catppuccin")
-time([[Config for catppuccin]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

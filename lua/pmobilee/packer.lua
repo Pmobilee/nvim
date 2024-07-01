@@ -11,18 +11,6 @@ return require('packer').startup(function(use)
         'nvim-telescope/telescope.nvim', tag = '0.1.8',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
-    use { "catppuccin/nvim", as = "catppuccin", config = function()
-        require('catppuccin').setup({
-            flavour = "mocha",
-            integrations = {
-                treesitter = true,
-                native_lsp = {
-                    enabled = true,
-                },
-            },
-        })
-        vim.cmd.colorscheme "catppuccin-mocha"
-    end }
     use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
     use('theprimeagen/harpoon')
     use('mbbill/undotree')
@@ -46,8 +34,7 @@ return require('packer').startup(function(use)
 
     -- Additional plugins for better integration
     use 'nvim-lua/plenary.nvim' -- Common utilities
-
-
+    use { "catppuccin/nvim", as = "catppuccin" }
     
 
 end)
