@@ -5,11 +5,10 @@ local mason_lspconfig = require('mason-lspconfig')
 
 mason.setup()
 mason_lspconfig.setup({
-    ensure_installed = { 'pyright' },
+    ensure_installed = { 'pyright'},
 })
 
 lspconfig.pyright.setup{}
-
 
 -- Completion setup
 local cmp = require('cmp')
@@ -40,5 +39,5 @@ lint.linters_by_ft = {
     python = {'ruff'},
 }
 
-vim.api.nvim_command('au BufWritePost <buffer> lua require("lint").try_lint()')
+vim.api.nvim_command('au BufWritePost * lua require("lint").try_lint()')
 

@@ -50,6 +50,7 @@ import traceback
 import uuid
 from datetime import datetime
 
+
 import colorlog
 import older_modules.DSM as DSM
 import psychological_tests.guidelines as guidelines
@@ -83,34 +84,24 @@ def update_args_from_config(file_path, args):
 def main(args):
 
     # Create a formatter for colored output
-    formatter = colorlog.ColoredFormatter(
-            "%(log_color)s%(asctime)s - %(levelname)s - %(message)s\n        log_colors={
-                "DEBUG": "white",
-                "INFO": "green",
-                "WARNING": "yellow",
-                "ERROR": "red",
-                "CRITICAL": "bold_red",
-                },
-            ) 
 
-    test= {"teh":"sre", "dfsd":"fsdf"}
+    test = {"teh": "sre", "dfsd": "fsdf"}
     # Create a console handler with the colored formatter
     console_handler = logging.StreamHandler()
     console_handler.setFormatter(formatter)
 
     # Create a unique log file name
     log_filename = (
-            f"{args.user_id}_{args.chat_id}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
-            )
+        f"{args.user_id}_{args.chat_id}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+    )
     log_dir = "logs"
     os.makedirs(log_dir, exist_ok=True)
     log_filepath = os.path.join(log_dir, log_filename)
-
     # Create a file handler without colors
     file_handler = logging.FileHandler(log_filepath)
     file_handler.setFormatter(
-            logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-            )
+        logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+    )
 
     # Get the root logger and set its handlers
     logger = logging.getLogger()
@@ -156,59 +147,50 @@ def main(args):
     if manager.args.chat_id == "latest":
         if manager.args.task != "intake":
             manager.chat_id = utilities.get_highest_chat_id(
-                    manager.args.user_id,
-                    manager.tables["report_data"],
-                    args.database,
-                    manager,
-                    )
+                manager.args.user_id,
+                manager.tables["report_data"],
+                args.database,
+                manager,
+            )
             manager.args.chat_id = utilities.get_highest_chat_id(
-                    manager.args.user_id,
-                    manager.tables["report_data"],
-                    args.database,
-                    manager,
-                    )
+                manager.args.user_id,
+                manager.tables["report_data"],
+                args.database,
+                manager,
+            )
         else:
-
             manager.chat_id = utilities.get_highest_chat_id(
-                    manager.args.user_id,
-                    manager.tables["intakes"],
-                    manager.args.database,
-                    manager,
-                    )
-            manager.args.chat_id = utilities.get_highest_chat_id(
-                    manager.args.user_id,
-                    manager.tables["intakes"],
-                    manager.args.database,
-                    manager,
-                    )
-
+                manager.args.user_id,
+                manager.tables["intakes"],
+                manager.args.database,
+                manager,
+            )
     if manager.args.user_id == "None":
         manager.args.user_id = str(uuid.uuid4())
         logging.debug("Created user id: %s", manager.args.user_id)
 
     diagnose_criteria.create_folder_structure(
-            ".", str(manager.args.user_id), str(manager.args.chat_id)
-            )
-
-
+        ".", str(manager.args.user_id), str(manager.args.chat_id)
+    )
 
     if manager.args.task == "server":
         # """
         # Run the server in a subprocess. This is no longer necessary, but kept for legacy reasons.
         # """
 
+
         gpu_args = [
-                "-m",
-                manager.args.model,
-                "-p",
-                manager.args.port,
-                "-d",
-                manager.args.device,
-                ]
+            "-m",
+            manager.args.model,
+            "-p",
+            manager.args.port,
+            "-d",
+            manager.args.device,
+        ]
         gpu_args = [str(arg) for arg in gpu_args]
         logging.debug(
-                "Running model %s on port %s", manager.args.model, manager.args.port
-                )
+            "Running model %s on port %s", manager.args.model, manager.args.port
+        )
         subprocess.run(["python", "GPU_api.py"] + gpu_args)
 
     elif manager.args.task == "generate_intake_report_summaries":
@@ -219,34 +201,34 @@ def main(args):
         # """
 
         user_dataframe = utilities.get_user_data(
-                manager.user_id,
-                manager.args.chat_id,
-                manager.DB_PATH,
-                manager.tables["intakes"],
-                manager,
-                )
+            manager.user_id,
+            manager.args.chat_id,
+            manager.DB_PATH,
+            manager.tables["intakes"],
+            manager,
+        )
         summaries.summarize_conversations(user_dataframe)
 
     elif manager.args.task == "generate_intake_report_tracking_summaries":
         user_dataframe = utilities.get_user_data(
-                manager.user_id,
-                manager.args.chat_id,
-                manager.DB_PATH,
-                manager.tables["intakes"],
-                manager,
-                )
+            manager.user_id,
+            manager.args.chat_id,
+            manager.DB_PATH,
+            manager.tables["intakes"],
+            manager,
+        )
 
         summaries.summarize_conversations_with_tracking(user_dataframe)
 
     elif manager.args.task == "generate_intake_report_data":
 
         user_dataframe = utilities.get_user_data(
-                user_id=manager.user_id,
-                chat_id=manager.chat_id,
-                db_filename=manager.DB_PATH,
-                table_name=manager.tables["report_data"],
-                manager=manager,
-                )
+            user_id=manager.user_id,
+            chat_id=manager.chat_id,
+            db_filename=manager.DB_PATH,
+            table_name=manager.tables["report_data"],
+            manager=manager,
+        )
         report.generate_report_data(user_dataframe)
 
     elif manager.args.task == "generate_intake_report":
@@ -365,7 +347,7 @@ def main(args):
             # Import the specified module dynamically
             module = importlib.import_module("psychological_tests." + module_name)
             # Get the class with the same name as the modul
-            test = {"hey" : "tooo"}
+            test = {"hey": "tooo"}
             module_class = getattr(module, module_name)
             # Instantiate the class
             module_instance = module_class(manager, utilities, commands)
@@ -374,12 +356,12 @@ def main(args):
             logging.error("Module '%s' not found.", module_name, exc_info=True)
         else:
             if (
-                    hasattr(manager.args, "assessment_only")
-                    and manager.args.assessment_only
-                    ):
+                hasattr(manager.args, "assessment_only")
+                and manager.args.assessment_only
+            ):
                 if hasattr(module_instance, "diagnose") and callable(
-                        module_instance.diagnose
-                        ):
+                    module_instance.diagnose
+                ):
                     # If assessment_only is True and the module has a diagnose method, call it
                     module_instance.diagnose()
                 else:
@@ -387,25 +369,25 @@ def main(args):
             else:
                 try:
                     if hasattr(module_instance, "perform_test") and callable(
-                            module_instance.perform_test
-                            ):
+                        module_instance.perform_test
+                    ):
                         # If assessment_only is False or not provided and the module has a perform_test method, call it
                         module_instance.perform_test()
                     else:
                         logging.error(
-                                "Class '%s' in module '%s' does not have a perform_test method.\n\n%s",
-                                module_class,
-                                module_name,
-                                traceback.format_exc(),
-                                )
+                            "Class '%s' in module '%s' does not have a perform_test method.\n\n%s",
+                            module_class,
+                            module_name,
+                            traceback.format_exc(),
+                        )
 
                 except AttributeError:
                     logging.error(
-                            "Class '%s' not found in module '%s'.",
-                            module_class,
-                            module_name,
-                            exc_info=True,
-                            )
+                        "Class '%s' not found in module '%s'.",
+                        module_class,
+                        module_name,
+                        exc_info=True,
+                    )
 
     elif manager.args.task == "fill_apa":
         logging.debug("Creating APA table")

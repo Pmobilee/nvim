@@ -109,6 +109,11 @@ _G.packer_plugins = {
     path = "/home/damion/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
+  gruvbox = {
+    loaded = true,
+    path = "/home/damion/.local/share/nvim/site/pack/packer/start/gruvbox",
+    url = "https://github.com/morhetz/gruvbox"
+  },
   harpoon = {
     loaded = true,
     path = "/home/damion/.local/share/nvim/site/pack/packer/start/harpoon",
@@ -123,6 +128,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/damion/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
+  },
+  ["nightfox.nvim"] = {
+    loaded = true,
+    path = "/home/damion/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
+    url = "https://github.com/EdenEast/nightfox.nvim"
   },
   ["null-ls.nvim"] = {
     loaded = true,
@@ -149,6 +159,11 @@ _G.packer_plugins = {
     path = "/home/damion/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
+  ["onedark.vim"] = {
+    loaded = true,
+    path = "/home/damion/.local/share/nvim/site/pack/packer/start/onedark.vim",
+    url = "https://github.com/joshdick/onedark.vim"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/damion/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -159,15 +174,30 @@ _G.packer_plugins = {
     path = "/home/damion/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["telescope-themes.nvim"] = {
+    loaded = true,
+    path = "/home/damion/.local/share/nvim/site/pack/packer/start/telescope-themes.nvim",
+    url = "https://github.com/nvim-telescope/telescope-themes.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/damion/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "/home/damion/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    url = "https://github.com/folke/tokyonight.nvim"
+  },
   undotree = {
     loaded = true,
     path = "/home/damion/.local/share/nvim/site/pack/packer/start/undotree",
     url = "https://github.com/mbbill/undotree"
+  },
+  vim = {
+    loaded = true,
+    path = "/home/damion/.local/share/nvim/site/pack/packer/start/vim",
+    url = "https://github.com/dracula/vim"
   },
   ["vim-fugitive"] = {
     loaded = true,

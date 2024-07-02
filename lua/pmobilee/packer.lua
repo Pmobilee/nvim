@@ -18,7 +18,10 @@ return require('packer').startup(function(use)
 
     -- LSP and autocompletion plugins
     use 'neovim/nvim-lspconfig' -- LSP
-    use 'williamboman/mason.nvim' -- LSP installer
+    use {
+        'williamboman/mason.nvim',
+        opts = {ensure_installed = {'pyright', 'black', 'mypy', 'ruff'}}
+    }
     use 'williamboman/mason-lspconfig.nvim' -- Mason LSP config
     use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
     use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
@@ -35,7 +38,13 @@ return require('packer').startup(function(use)
     -- Additional plugins for better integration
     use 'nvim-lua/plenary.nvim' -- Common utilities
     use { "catppuccin/nvim", as = "catppuccin" }
-    
+    use { 'nvim-telescope/telescope-themes.nvim' } -- Theme browser
 
+        -- Additional themes
+    use 'morhetz/gruvbox' -- Gruvbox theme
+    use 'joshdick/onedark.vim' -- OneDark theme
+    use 'folke/tokyonight.nvim' -- TokyoNight theme
+    use 'EdenEast/nightfox.nvim' -- Nightfox theme
+    use 'dracula/vim' -- Dracula theme
 end)
 

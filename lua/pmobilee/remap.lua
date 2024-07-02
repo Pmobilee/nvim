@@ -14,4 +14,8 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 
+vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
 vim.keymap.set("x", "<leader>p", "\"_dP")
+
+vim.api.nvim_set_keymap('n', '<leader>th', '<cmd>lua require("theme_browser").browse_themes()<CR>', { noremap = true, silent = true })
+
